@@ -1,16 +1,42 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const auth = (req, res, next) => {
-  const token = req.header("Authorization")?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Access denied" });
+function verifyToken(req, res, next) {
+  // Utilisation de req.headers['Authorization'] pour accéder à l'en-tête
+  const jwtHeader = req.headers['authorization'];
+  
+  // Si l'en-tête n'existe pas, retourne une erreur
+  if (!jwtHeader) {
+    return res.status(401).json({ error: 'Access denied: No token provided' });
+  }
+
+  // Diviser le header "Bearer <token>"
+  const parts = jwtHeader.split(' ');
+  const prefix = parts[0];
+  const token = parts[1];
+
+  // Vérifie si le préfixe est bien "Bearer"
+  if (prefix !== 'Bearer') {
+    return res.status(401).json({ error: 'Access denied: Invalid token format' });
+  }
+
+  // Si aucun token, retourner une erreur
+  if (!token) {
+    return res.status(401).json({ error: 'Access denied: Token missing' });
+  }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // contient l'id de l'utilisateur
-    next();
-  } catch (err) {
-    res.status(400).json({ message: "Invalid token" });
+    // Vérification du token
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decodedToken); // Pour le débogage
+    console.log("Payload décodé :", decodedToken); // Afficher l'ensemble du payload
+    console.log("Expire le :", new Date(decodedToken.exp * 1000)); // Date d'expiration du token
+    req.userId = decodedToken.userId; // Assigner l'ID de l'utilisateur à la requête
+    next(); // Passer au middleware suivant ou à la route
+  } catch (e) {
+  
+    // Si le token est invalide ou expiré
+    return res.status(401).json({ error: 'Invalid token: ' + e.message });
   }
-};
+}
 
-module.exports = auth;
+module.exports = verifyToken;
