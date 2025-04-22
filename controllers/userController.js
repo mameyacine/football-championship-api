@@ -1,5 +1,5 @@
 const userService = require("../services/userService");
-const User = require("./models/User");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 // Récupérer tous les utilisateurs
@@ -12,7 +12,7 @@ module.exports.getUsers = async (req, res) => {
   }
 };
 // Récupérer un utilisateur par son ID
-module.exports.getUser = async (req, res) => {
+module.exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate("tasks");
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -21,6 +21,20 @@ module.exports.getUser = async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
+};
+
+// Récupérer un utilisateur par son email
+
+module.exports.getUserByEmail = async (req, res) => {
+  try {
+    const user = await userService.getUserById({ email: req.params.email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+
 };
 
 // Créer un nouvel utilisateur

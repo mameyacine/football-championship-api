@@ -1,4 +1,4 @@
-const User = require("./models/User");
+const User = require("../models/User");
 
 module.exports.getUsers = async (query) => {
   try {
@@ -8,7 +8,7 @@ module.exports.getUsers = async (query) => {
   }
 };
 
-module.exports.getUser = async (query) => {
+module.exports.getUserById = async (query) => {
   try {
     return await User.findOne(query);
   } catch (e) {
