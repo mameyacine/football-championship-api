@@ -42,6 +42,9 @@ const teamChampionshipRoute = require("./routes/teamChampionshipRoute");
 app.use("/api/teamChampionships", teamChampionshipRoute);
 
 
+const dayRoute = require("./routes/dayRoute");
+app.use("/api/days", dayRoute);
+
 
 // const gameRoute = require("./routes/gameRoute");
 // app.use("/api/games", gameRoute);
@@ -49,8 +52,7 @@ app.use("/api/teamChampionships", teamChampionshipRoute);
 
 
 
-// const dayRoute = require("./routes/dayRoute");
-// app.use("/api/days", dayRoute);
+
 
 
 
