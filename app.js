@@ -30,11 +30,14 @@ app.use("/api/users", userRoute);
 const countryRoute = require("./routes/countryRoute");
 app.use("/api/countries", countryRoute);
 
+
+
+const championshipRoute = require("./routes/championshipRoute");
+app.use("/api/championships", championshipRoute);
+
 // const gameRoute = require("./routes/gameRoute");
 // app.use("/api/games", gameRoute);
 
-// const championshipRoute = require("./routes/championshipRoute");
-// app.use("/api/championships", championshipRoute);
 
 // const teamRoute = require("./routes/teamRoute");
 // app.use("/api/teams", teamRoute);
