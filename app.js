@@ -35,12 +35,19 @@ app.use("/api/countries", countryRoute);
 const championshipRoute = require("./routes/championshipRoute");
 app.use("/api/championships", championshipRoute);
 
+const teamRoute = require("./routes/teamRoute");
+app.use("/api/teams", teamRoute);
+
+const teamChampionshipRoute = require("./routes/teamChampionshipRoute");
+app.use("/api/teamChampionships", teamChampionshipRoute);
+
+
+
 // const gameRoute = require("./routes/gameRoute");
 // app.use("/api/games", gameRoute);
 
 
-// const teamRoute = require("./routes/teamRoute");
-// app.use("/api/teams", teamRoute);
+
 
 // const dayRoute = require("./routes/dayRoute");
 // app.use("/api/days", dayRoute);
@@ -51,3 +58,6 @@ app.use("/api/championships", championshipRoute);
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}...`);
 });
+
+
+
