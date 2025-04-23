@@ -26,6 +26,24 @@ app.use("/api", verifyToken);
 const userRoute = require("./routes/userRoute");
 app.use("/api/users", userRoute);
 
+
+const countryRoute = require("./routes/countryRoute");
+app.use("/api/countries", countryRoute);
+
+// const gameRoute = require("./routes/gameRoute");
+// app.use("/api/games", gameRoute);
+
+// const championshipRoute = require("./routes/championshipRoute");
+// app.use("/api/championships", championshipRoute);
+
+// const teamRoute = require("./routes/teamRoute");
+// app.use("/api/teams", teamRoute);
+
+// const dayRoute = require("./routes/dayRoute");
+// app.use("/api/days", dayRoute);
+
+
+
 // Lancer serveur
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}...`);

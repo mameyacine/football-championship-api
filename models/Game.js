@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
   // models/Game.js
   const gameSchema = new mongoose.Schema({

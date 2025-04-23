@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
 // models/Country.js
 const countrySchema = new mongoose.Schema({

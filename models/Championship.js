@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
   // models/Championship.js
   const championshipSchema = new mongoose.Schema({
