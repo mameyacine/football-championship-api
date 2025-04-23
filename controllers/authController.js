@@ -1,5 +1,5 @@
 const authService = require("../services/AuthService");
-const UserAuth = require("../models/userAuth");
+const UserAuth = require("../models/UserAuth");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 module.exports.login = async (req, res) => {

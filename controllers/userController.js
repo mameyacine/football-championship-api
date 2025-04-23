@@ -1,7 +1,7 @@
 const userService = require("../services/userService");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-
+const mongoose = require('mongoose');
 // Récupérer tous les utilisateurs
 module.exports.getUsers = async (req, res) => {
   try {
@@ -14,11 +14,18 @@ module.exports.getUsers = async (req, res) => {
 // Récupérer un utilisateur par son ID
 module.exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate("tasks");
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
+
+    const user = await User.findById(id); // ou avec .populate('tasks') si défini
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json(user);
   } catch (e) {
+    console.error("Erreur getUserById:", e);
     res.status(500).json({ message: e.message });
   }
 };
