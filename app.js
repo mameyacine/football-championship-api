@@ -46,8 +46,8 @@ const dayRoute = require("./routes/dayRoute");
 app.use("/api/days", dayRoute);
 
 
-// const gameRoute = require("./routes/gameRoute");
-// app.use("/api/games", gameRoute);
+const gameRoute = require("./routes/gameRoute");
+app.use("/api/games", gameRoute);
 
 
 
