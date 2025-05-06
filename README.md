@@ -82,4 +82,4 @@ Toutes les routes commençant par /api/ sont protégées par un token.
 
 👨‍💻 Auteurs 
 	•	NDIAYE Mame Yacine – GitHub: mameyacine
-    •   SAKHO Mama Aissata
+   	•   	SAKHO Mama Aissata
